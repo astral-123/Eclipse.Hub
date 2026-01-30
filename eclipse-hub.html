@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>eclipse.hub</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #0b0b0b;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: #a855f7;
+}
+
+/* CENTER */
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* EMOJI LUNE CENTRE */
+.center-moon {
+    font-size: 90px;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 0 20px rgba(168,85,247,0.6));
+}
+
+/* BUTTONS */
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+button {
+    background: #151515;
+    border: 1px solid #222;
+    color: #a855f7;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #1f1f1f;
+}
+
+/* FOOTER */
+.footer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-weight: bold;
+    color: #a855f7;
+}
+
+.footer-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #8b5cf6;
+    font-size: 13px;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background: #111;
+    width: 380px;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #222;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-header h2 {
+    color: #a855f7;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.email-box {
+    background: #0b0b0b;
+    border: 1px solid #222;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.email-box span {
+    color: #a855f7;
+}
+
+.copy-btn {
+    background: #1c1c1c;
+    border: 1px solid #333;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #a855f7;
+}
+
+.toast {
+    margin-top: 10px;
+    color: #22c55e;
+    display: none;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- CENTER -->
+<div class="center">
+    <div class="center-moon">🌙</div>
+    <div class="buttons">
+        <button onclick="downloadTxt()">Download</button>
+        <button onclick="openDiscord()">Discord</button>
+        <button onclick="openModal()">Contact</button>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">🌙 eclipse.hub</div>
+
+<div class="footer-right">
+    © 2026 eclipse.hub • Privacy Policy • Terms of Service
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Contact Us</h2>
+            <span class="close" onclick="closeModal()">✕</span>
+        </div>
+        <p>Have questions or need support? Reach out to us via email:</p>
+        <div class="email-box">
+            <span id="email">eclipse.hub.info@gmail.com</span>
+            <button class="copy-btn" onclick="copyEmail()">Copy</button>
+        </div>
+        <div class="toast" id="toast">✅ Tu as copié l'email</div>
+    </div>
+</div>
+
+<script>
+function downloadTxt() {
+    const content = `Copy the script and colle the excecutor
+loadstring(game:HttpGet("https://raw.githubusercontent.com/astral-123/Key-system-Luncher-Eclips-Hub/refs/heads/main/main"))()
+`;
+    const blob = new Blob([content], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "eclipse_hub.txt";
+    a.click();
+}
+
+function openDiscord() {
+    window.open("https://discord.gg/3y5cHT2daE", "_blank");
+}
+
+function openModal() {
+    document.getElementById("modal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function copyEmail() {
+    navigator.clipboard.writeText("eclipse.hub.info@gmail.com");
+    const toast = document.getElementById("toast");
+    toast.style.display = "block";
+    setTimeout(() => toast.style.display = "none", 2000);
+}
+</script>
+
+</body>
+</html>
